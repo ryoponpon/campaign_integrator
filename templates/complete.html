@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>処理完了 - キャンペーン名統合ツール</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>処理完了</h1>
+        
+        {% if output_files %}
+            <div class="result-files">
+                <h2>処理結果ファイル</h2>
+                <ul>
+                    {% for file in output_files %}
+                        <li>
+                            <div class="file-item">
+                                <span class="file-name">{{ file }}</span>
+                                <a href="{{ url_for('download_file', filename=file) }}" class="download-button">
+                                    ダウンロード
+                                </a>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% else %}
+            <div class="no-files">
+                <p>処理結果ファイルがありません。</p>
+            </div>
+        {% endif %}
+
+        <div class="actions">
+            <a href="{{ url_for('index') }}" class="tool-link">
+                トップに戻る
+            </a>
+            <a href="https://co-occurrence-matrix.onrender.com/" class="tool-link" target="_blank">
+                共起行列生成ツールへ
+            </a>
+        </div>
+    </div>
+</body>
+</html>
